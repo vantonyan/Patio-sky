@@ -47,13 +47,9 @@ The build is a static `dist/` folder. Any of these work.
 
 **GitHub Pages**
 
-For a user site (`https://username.github.io/`) the default base path `/` is correct. For a project site (`https://username.github.io/repo/`) rebuild with the repo name:
+Production builds use base `/patio-sky/`, so the site is [https://vantonyan.github.io/patio-sky/](https://vantonyan.github.io/patio-sky/). Pushing to `main` runs `.github/workflows/deploy.yml`, which tests, builds, and deploys `dist/` with GitHub Actions. In the repo settings, Pages source must be **GitHub Actions**. The app uses hash routes (`#sky`, `#tonight`), so the host does not need URL rewrites.
 
-```bash
-VITE_BASE=/repo/ npm run build
-```
-
-Publish the `dist/` directory (GitHub Actions `actions/upload-pages-artifact`, or push `dist/` to the `gh-pages` branch). The app uses hash routes (`#sky`, `#tonight`), so the host does not need URL rewrites.
+`npm run dev` still serves the app at `/` for local work. `npm run build` writes a `dist/` that expects to be hosted under `/patio-sky/`.
 
 ## What the tablet does
 

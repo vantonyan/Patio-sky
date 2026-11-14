@@ -2,13 +2,14 @@ import { defineConfig } from 'vitest/config';
 import preact from '@preact/preset-vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
-  base: process.env.VITE_BASE || '/',
+export default defineConfig(({ command }) => {
+  const base = process.env.VITE_BASE || (command === 'build' ? '/patio-sky/' : '/');
+  return {
+  base,
   plugins: [
     preact(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.png', 'data/*.json', 'data/*.txt'],
       manifest: {
         name: 'Patio Sky',
         short_name: 'Patio Sky',
@@ -17,17 +18,19 @@ export default defineConfig({
         background_color: '#000000',
         display: 'standalone',
         orientation: 'any',
-        start_url: '.',
-        scope: '.',
+        start_url: base,
+        scope: base,
         icons: [
-          { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
-          { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
-          { src: 'icons/icon-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: `${base}icons/icon-192.png`, sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: `${base}icons/icon-512.png`, sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: `${base}icons/icon-maskable.png`, sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,json,txt,woff2}'],
-        navigateFallback: 'index.html',
+        navigateFallback: `${base}index.html`,
+        navigateFallbackAllowlist: [new RegExp(base === '/' ? '^/' : '^/patio-sky/')],
+        modifyURLPrefix: base === '/' ? undefined : { '': base },
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       },
     }),
@@ -38,4 +41,5 @@ export default defineConfig({
     environment: 'node',
     include: ['test/**/*.ts'],
   },
+};
 });
