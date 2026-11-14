@@ -47,9 +47,9 @@ The build is a static `dist/` folder. Any of these work.
 
 **GitHub Pages**
 
-Production builds use base `/patio-sky/`, so the site is [https://vantonyan.github.io/patio-sky/](https://vantonyan.github.io/patio-sky/). Pushing to `main` runs `.github/workflows/deploy.yml`, which tests, builds, and deploys `dist/` with GitHub Actions. In the repo settings, Pages source must be **GitHub Actions**. The app uses hash routes (`#sky`, `#tonight`), so the host does not need URL rewrites.
+Production builds use base `/Patio-sky/`, so the site is [https://vantonyan.github.io/Patio-sky/](https://vantonyan.github.io/Patio-sky/). Pushing to `main` runs `.github/workflows/deploy.yml`, which tests, builds, and deploys `dist/` with GitHub Actions. In the repo settings, Pages source must be **GitHub Actions**. The app uses hash routes (`#sky`, `#tonight`), so the host does not need URL rewrites.
 
-`npm run dev` still serves the app at `/` for local work. `npm run build` writes a `dist/` that expects to be hosted under `/patio-sky/`.
+`npm run dev` still serves the app at `/` for local work. `npm run build` writes a `dist/` that expects to be hosted under `/Patio-sky/`.
 
 ## What the tablet does
 

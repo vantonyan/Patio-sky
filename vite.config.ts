@@ -3,7 +3,7 @@ import preact from '@preact/preset-vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ command }) => {
-  const base = process.env.VITE_BASE || (command === 'build' ? '/patio-sky/' : '/');
+  const base = process.env.VITE_BASE || (command === 'build' ? '/Patio-sky/' : '/');
   return {
   base,
   plugins: [
@@ -29,7 +29,7 @@ export default defineConfig(({ command }) => {
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,json,txt,woff2}'],
         navigateFallback: `${base}index.html`,
-        navigateFallbackAllowlist: [new RegExp(base === '/' ? '^/' : '^/patio-sky/')],
+        navigateFallbackAllowlist: [new RegExp(base === '/' ? '^/' : '^/Patio-sky/')],
         modifyURLPrefix: base === '/' ? undefined : { '': base },
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       },
