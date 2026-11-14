@@ -1,0 +1,29 @@
+Patio Sky data notices
+
+Constellation stick figures, names, and the packaged boundary polygons are from
+d3-celestial by Olaf Frohn, released under the BSD 3-Clause license.
+Copyright (c) 2015, Olaf Frohn. The figures follow the IAU constellation charts.
+Boundaries originate in Catalogue of Constellation Boundary Data, Davenhall A.C.
+and Leggett S.K. (1989), VizieR catalog VI/49, which is the J2000 reduction of
+the Delporte / IAU boundaries.
+
+Redistribution of the d3-celestial material keeps the BSD conditions: the
+copyright notice and disclaimer travel with source and binary forms, and the
+author's name is not used to endorse derived products.
+
+OpenNGC, by Mattia Verga, is licensed CC-BY-SA-4.0.
+https://github.com/mattiaverga/OpenNGC
+https://creativecommons.org/licenses/by-sa/4.0/
+The catalog bundled here is a filtered derivative: all 110 Messier objects,
+plus NGC/IC objects with V (or B) magnitude 13.0 or brighter, plus objects that
+have no magnitude but a major axis of at least 2 arcminutes. Stars, duplicates,
+and nonexistent entries are omitted. M102 is identified as NGC 5866, the
+Spindle Galaxy. Changes from the original database are that filter and that
+identification. Share-alike applies to catalog.json.
+
+Altitude, azimuth, sidereal time, precession, and refraction use
+astronomy-engine by Don Cross, MIT license.
+https://github.com/cosinekitty/astronomy
+
+The Messier captured seed, when present, is derived from Vardan Antonyan's
+private spreadsheet and is not part of the OpenNGC license.

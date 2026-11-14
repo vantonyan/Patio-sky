@@ -1,0 +1,26 @@
+{
+  "name": "patio-sky",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "prepare-data": "python3 scripts/prepare_data.py",
+    "dev": "vite --host 0.0.0.0 --port 4317",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4317",
+    "test": "vitest run",
+    "icons": "python3 scripts/make_icon.py"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19",
+    "fflate": "^0.8.3",
+    "preact": "^11.2.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.1.0"
+  }
+}
