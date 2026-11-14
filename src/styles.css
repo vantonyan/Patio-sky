@@ -113,6 +113,7 @@ main { flex: 1; padding: 14px 14px 18px; }
 .figure.dim .stick { stroke: #5a2020; }
 .figure.on .stick { stroke: #ffd0d0; stroke-width: 3.2; }
 .ground { fill: #000; opacity: 0.72; }
+.horizon-line { fill: none; stroke: #ffd0d0; stroke-width: 2.4; stroke-linejoin: round; }
 .poor-wedge { fill: url(#streetlights); opacity: 0.45; }
 .rim { fill: none; stroke: #ff4d4d; stroke-width: 2; }
 .label { fill: #ffb4b4; font-size: 28px; text-anchor: middle; dominant-baseline: middle; font-weight: 650; }

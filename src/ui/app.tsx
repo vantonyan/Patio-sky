@@ -523,6 +523,8 @@ export function App() {
             settings={settings}
             gpsNote={gpsNote}
             horizonReady={Boolean(profile && profile.length >= 2)}
+            horizonName={bundle.horizon?.name ?? 'Patio'}
+            horizonPoints={profile?.length ?? 0}
             when={when}
             offsetMin={offsetMin}
             onGps={useGps}
@@ -963,6 +965,8 @@ function SettingsPage(props: {
   settings: Settings;
   gpsNote: string;
   horizonReady: boolean;
+  horizonName: string;
+  horizonPoints: number;
   when: Date;
   offsetMin: number;
   onGps: () => void;
@@ -1013,7 +1017,7 @@ function SettingsPage(props: {
       </button>
       <p class="note">
         {props.horizonReady
-          ? 'At home, an object is up only when its altitude clears the patio line by 2°. Azimuth 20–60° is flagged poor: streetlights/tree gap.'
+          ? `${props.horizonName} profile is loaded (${props.horizonPoints} azimuths). At home, an object is up only when its altitude clears that line by 2°. Azimuth 20–60° is flagged poor: streetlights/tree gap.`
           : 'The patio profile is not in this build. Away from home, or until the profile is bundled, a flat horizon is used.'}
       </p>
       <label class="slider-line">

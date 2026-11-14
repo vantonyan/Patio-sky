@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { interpolateHorizon, judgeVisibility, parseHorizonText } from '../src/lib/horizon';
 import type { HorizonPoint } from '../src/lib/types';
@@ -45,6 +46,18 @@ not a row
     expect(south.required).toBeCloseTo(42, 5);
     expect(south.poor).toBe(false);
     expect(south.visible).toBe(true);
+  });
+
+  it('bundles the Foothill patio profile', () => {
+    const horizon = JSON.parse(readFileSync('public/data/horizon.json', 'utf8')) as {
+      marginDeg: number;
+      points: HorizonPoint[];
+    };
+    expect(horizon.marginDeg).toBe(2);
+    expect(horizon.points).toHaveLength(36);
+    const south = horizon.points.find((point) => point.az === 180);
+    expect(south?.alt).toBe(44);
+    expect(interpolateHorizon(horizon.points, 25)).toBeCloseTo(25, 5);
   });
 
   it('uses the flat horizon when the patio toggle is off', () => {

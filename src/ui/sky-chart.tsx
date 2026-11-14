@@ -35,6 +35,16 @@ function polyline(points: [number, number][]): string {
   return points.map((point, index) => `${index === 0 ? 'M' : 'L'}${point[0].toFixed(1)},${point[1].toFixed(1)}`).join(' ');
 }
 
+function horizonLine(altitude: (az: number) => number): string {
+  const parts: string[] = [];
+  for (let step = 0; step <= 360; step += 1) {
+    const az = step;
+    const [x, y] = xy(Math.max(0, Math.min(89.5, altitude(az))), az);
+    parts.push(`${step === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`);
+  }
+  return parts.join(' ');
+}
+
 function ringPath(altitude: (az: number) => number): string {
   const inner: string[] = [];
   const outer: string[] = [];
@@ -67,9 +77,9 @@ function wedgePath(start: number, end: number, innerAlt: number): string {
 export function SkyChart({ items, project, horizon, patio, flatHorizon, showBounds, selected, onSelect }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const usePatio = patio && horizon !== null && horizon.length >= 2;
-  const ground = usePatio
-    ? ringPath((az) => interpolateHorizon(horizon, az))
-    : ringPath(() => flatHorizon);
+  const altitudeAt = usePatio ? (az: number) => interpolateHorizon(horizon, az) : () => flatHorizon;
+  const ground = ringPath(altitudeAt);
+  const line = horizonLine(altitudeAt);
 
   const labels = items
     .filter((item) => item.state !== 'down' || item.con.id === selected)
@@ -158,6 +168,7 @@ export function SkyChart({ items, project, horizon, patio, flatHorizon, showBoun
           })}
         </g>
         <path d={ground} class="ground" />
+        <path d={line} class="horizon-line" />
         {usePatio && <path d={wedgePath(20, 60, 42)} class="poor-wedge" />}
       </g>
       <circle cx={CX} cy={CY} r={R} class="rim" />

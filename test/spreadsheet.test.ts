@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { strToU8, zipSync } from 'fflate';
 import {
@@ -66,6 +67,18 @@ describe('Messier spreadsheet seed', () => {
     const chosen = chooseCaptured(evenColumns);
     expect(chosen.ids).toHaveLength(72);
     expect(chosen.rule).toContain('1-based');
+  });
+});
+
+describe('bundled Messier seed', () => {
+  it('ships 72 captured ids, including the tab-padded M80 cell', () => {
+    const seed = JSON.parse(readFileSync('public/data/messier-seed.json', 'utf8')) as { count: number; captured: string[] };
+    expect(seed.count).toBe(72);
+    expect(seed.captured).toHaveLength(72);
+    expect(new Set(seed.captured).size).toBe(72);
+    expect(seed.captured).toContain('M80');
+    expect(seed.captured).not.toContain('M3');
+    expect(seed.captured.every((id) => /^M([1-9]\d?|10\d|110)$/.test(id))).toBe(true);
   });
 });
 

@@ -69,7 +69,7 @@ Positions are J2000 catalog coordinates, precessed to the date, then converted w
 
 ## Refresh the Messier seed from the spreadsheet
 
-The capture log is seeded at build time from the spreadsheet, then stored on the device. Re-running the seed does not erase a log that is already on the tablet. Use **Log → Import** for that, or **Restore spreadsheet seed** to merge.
+The capture log is seeded at build time from the spreadsheet, then stored on the device. This repo already includes that seed: 72 of 110 Messier objects, read from even-numbered columns of `data/source/Messier_objects.xlsx`, and the Foothill patio profile in `data/source/Foothill_horizon.hrz`. Re-running the seed does not erase a log that is already on the tablet. Use **Log → Import** for that, or **Restore spreadsheet seed** to merge.
 
 1. Put the workbook at `data/source/Messier_objects.xlsx` (CSV is fine too).
 2. Run `python3 scripts/prepare_data.py`.
